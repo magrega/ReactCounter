@@ -1,53 +1,40 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
-class Counter extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            counter: this.props.counter,
-            text: ``
-        }
-    }
+const Counter = ({counter}) => {
 
-    increment = () => {
-        if (this.state.counter % 10 === 0 && this.state.counter > 0) {
-            this.setState(state => ({
-                counter: state.counter + 1,
-                text: `You've reached ${this.state.counter}`
-            }))
+    const [count, setCount] = useState(counter);
+    const [text, setText] = useState('');
+
+    function increment() {
+        if (count % 10 === 0 && count > 0) {
+            setCount(count + 1);
+            setText(`You've reached ${count}`);
+
         } else {
-            this.setState(state => ({
-                counter: state.counter + 1,
-                text: ``
-            }))
+            setCount(count + 1);
+            setText(``);
         }
     }
 
-    decrement = () => {
-        this.setState(state => ({
-            counter: state.counter - 1
-        }))
+    function decrement() {
+        setCount(count - 1);
     }
 
-    reset = () => {
-        this.setState(state => ({
-            counter: state.counter = 0,
-            text: ``
-        }))
+    function reset() {
+        setCount(0);
     }
 
-    render() {
         return (
             <div className="app">
-                <div className="counter">{this.state.counter} {this.state.text}</div>
+                <div className="counter">{count} {text}</div>
                 <div className="controls">
-                    <button onClick={this.increment}>INC</button>
-                    <button onClick={this.decrement}>DEC</button>
-                    <button onClick={this.reset}>RESET</button>
+                    <button onClick={increment}>INC</button>
+                    <button onClick={decrement}>DEC</button>
+                    <button onClick={reset}>RESET</button>
                 </div>
             </div>
         )
-    }
+    
 }
 export default Counter;
 
