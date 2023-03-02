@@ -7,17 +7,17 @@ const Counter = ({counter}) => {
 
     function increment() {
         if (count % 10 === 0 && count > 0) {
-            setCount(count + 1);
+            setCount(count => count + 1);
             setText(`You've reached ${count}`);
 
         } else {
-            setCount(count + 1);
+            setCount(count => count + 1);
             setText(``);
         }
     }
 
     function decrement() {
-        setCount(count - 1);
+        setCount(count => count - 1);
     }
 
     function reset() {
