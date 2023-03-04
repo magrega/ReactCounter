@@ -5,21 +5,13 @@ const Counter = ({ counter }) => {
     const [count, setCount] = useState(counter);
     const [text, setText] = useState('');
 
-    const increment = () => {
-        setCount(count + 1);
-    }
+    const increment = () => setCount(count + 1);
+    
+    const decrement = () => setCount(count - 1);
 
-    const decrement = () => {
-        setCount(count - 1);
-    }
+    const reset = () => setCount(0);
 
-    const reset = () => {
-        setCount(0);
-    }
-
-    useEffect(() => {
-        count % 10 === 0 && count > 0 ? setText(`You've reached `) : setText(``);
-    }, [count])
+    useEffect(() => count % 10 === 0 && count > 0 ? setText(`You've reached `) : setText(``), [count])
 
     return (
         <>
